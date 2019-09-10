@@ -296,9 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068f6182aeb32194e9522a6524fbfd0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  age: 39
-  playerName: 
-  email: system@pokemongo.com
+  age: 16
+  playerName: Test Player
   pokeballs: 23
   incubators: 22
   incenses: 13

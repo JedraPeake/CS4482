@@ -27,12 +27,14 @@ public class MyPlayerEditor : Editor
 	{
 		serializedObject.Update();
 
+		MyPlayer myTarget = (MyPlayer)target;
+		myTarget.playerName = EditorGUILayout.TextField("Player Name", myTarget.playerName);
+
 		EditorGUILayout.IntSlider(ageProp, 0, 100);
 
 		EditorGUILayout.LabelField("Items:");
 		int indent = EditorGUI.indentLevel;
 		EditorGUI.indentLevel++;
-		MyPlayer myTarget = (MyPlayer)target; 
 		myTarget.pokeballs = EditorGUILayout.IntField("Pokeballs", myTarget.pokeballs);
 		myTarget.incubators = EditorGUILayout.IntField("Incubators", myTarget.incubators);
 		myTarget.incenses = EditorGUILayout.IntField("Incenses", myTarget.incenses);
