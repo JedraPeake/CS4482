@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\MyPlayer.cs" />
+     <Compile Include="Assets\Scripts\MyPlayerLures.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/dev/CS4482/Tools1/jpeake2Tools1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

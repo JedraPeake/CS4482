@@ -18,9 +18,9 @@ public class MyPlayerEditor : Editor
 		playerNameProp = serializedObject.FindProperty("playerName");
 		ageProp = serializedObject.FindProperty("age");
 
-		pokeballsProp = serializedObject.FindProperty("pokeballs"); ;
-		incubatorsProp = serializedObject.FindProperty("incubators"); ;
-		incensesProp = serializedObject.FindProperty("incenses"); ;
+		pokeballsProp = serializedObject.FindProperty("pokeballs");
+		incubatorsProp = serializedObject.FindProperty("incubators");
+		incensesProp = serializedObject.FindProperty("incenses");
 	}
 
 	public override void OnInspectorGUI()
@@ -37,8 +37,6 @@ public class MyPlayerEditor : Editor
 		myTarget.incubators = EditorGUILayout.IntField("Incubators", myTarget.incubators);
 		myTarget.incenses = EditorGUILayout.IntField("Incenses", myTarget.incenses);
 		EditorGUI.indentLevel = indent;
-
-		EditorGUILayout.LabelField("Items3:");
 
 		serializedObject.ApplyModifiedProperties();
 	}
