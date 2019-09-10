@@ -32,12 +32,10 @@ public class MyPlayerEditor : Editor
 		EditorGUILayout.LabelField("Items:");
 		int indent = EditorGUI.indentLevel;
 		EditorGUI.indentLevel++;
-
 		MyPlayer myTarget = (MyPlayer)target; 
 		myTarget.pokeballs = EditorGUILayout.IntField("Pokeballs", myTarget.pokeballs);
 		myTarget.incubators = EditorGUILayout.IntField("Incubators", myTarget.incubators);
 		myTarget.incenses = EditorGUILayout.IntField("Incenses", myTarget.incenses);
-
 		EditorGUI.indentLevel = indent;
 
 		EditorGUILayout.LabelField("Items3:");

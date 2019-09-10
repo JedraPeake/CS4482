@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum LureTypes { Normal, Moss, Magnetic, Glacial }
 
-[System.Serializable]
+[Serializable]
 public class Lure
 {
 	public int count;
+	public LureTypes lureType;
 }
 
 public class MyPlayer : MonoBehaviour
@@ -21,18 +23,4 @@ public class MyPlayer : MonoBehaviour
 	public int incubators;
 	public int incenses;
 	public Lure[] lures;
-
-	//// Start is called before the first frame update
-	//void Start()
-	//{
-
-	//}
-
-	//// Update is called once per frame
-	//void Update()
-	//{
-
-	//}
-
-	//item validation? or count?
 }
