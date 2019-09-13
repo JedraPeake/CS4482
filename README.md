@@ -19,3 +19,11 @@ You must create a system that will not only ease editing of text, but also allow
 3. [ ] Write a collection of CustomEditors that make it easier to create, add to, and edit Languages and their key-value pairs. Note: You may choose to author your data outside of Unity. However, if you must im-plement aScriptedImporter1that will generate equivalent ScriptableObjects (.asset) with CustomEditors to visualize your localization data
 4. [ ] Use the Unity UI system to create a text box that utilizes your language data. You can reference string by name, id, or other
 5. [ ] Your text box contents must update when you change the selected language of yourengine
+
+### APP 1 – Learn your SDK
+
+1. [x] Do tutorials
+   - Tutorial 1: https://learn.unity.com/tutorial/using-the-unity-interface
+   - Tutorial 2: https://learn.unity.com/project/roll-a-ball-tutorial
+   - Tutorial 3: https://learn.unity.com/project/karting-template
+2. [x] Hand in source code (your files only, I don’t want the whole engine) and a binary of a simple, running, demo built on your SDK of choice.
