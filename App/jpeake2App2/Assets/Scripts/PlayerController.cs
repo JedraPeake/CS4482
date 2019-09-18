@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 		if (moveType == MoveType.run)
 			movement *= 2;
 
+		Debug.Log(movement);
 		playerRigidbody.MovePosition(transform.position + movement);
 	}
 
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
 		//Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		//RaycastHit floorHit;
 
-		//Debug.Log(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask));
+		//// Debug.Log(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask));
 		//if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
 		//{
 		//	Vector3 playerToMouse = floorHit.point - transform.position;
@@ -73,12 +74,10 @@ public class PlayerController : MonoBehaviour
 		//	playerRigidbody.MoveRotation(newRotation);
 		//}
 
-		//Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
-		//Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-		//float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-		//transform.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
-
-		
+		Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+		transform.rotation = Quaternion.Euler(new Vector3(0f, (angle *-1) - 90, 0f));
 	}
 
 	float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
