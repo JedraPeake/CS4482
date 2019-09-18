@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MoveType { idle, walk, run };
+
 public class PlayerController : MonoBehaviour
 {
 	Animator anim;
@@ -10,7 +12,9 @@ public class PlayerController : MonoBehaviour
 
 	public float speed = 6f;
 	Vector3 movement;
+
 	float camRayLength = 100f;
+	MoveType moveType = MoveType.idle;
 
 	void Awake()
 	{
@@ -24,45 +28,71 @@ public class PlayerController : MonoBehaviour
 		float h = Input.GetAxisRaw("Horizontal");
 		float v = Input.GetAxisRaw("Vertical");
 
-		Move(h, v);
+		moveType = GetMoveType(h, v);
 
 		Turning();
 
-		Animating(h, v);
+		Move(h, v);
+
+		Animating();
+	}
+
+	MoveType GetMoveType(float h, float v)
+	{
+		if (h == 0f && v == 0f)
+			return MoveType.idle;
+
+		return Input.GetKey(KeyCode.LeftShift) ? MoveType.run : MoveType.walk;
 	}
 
 	void Move(float h, float v)
 	{
-		// Set the movement vector based on the axis input.
 		movement.Set(h, 0f, v);
 
-		// Normalise the movement vector and make it proportional to the speed per second.
 		movement = movement.normalized * speed * Time.deltaTime;
+		if (moveType == MoveType.run)
+			movement *= 2;
 
-		// Move the player to it's current position plus the movement.
 		playerRigidbody.MovePosition(transform.position + movement);
 	}
 
 	void Turning()
 	{
-		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit floorHit;
+		//Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//RaycastHit floorHit;
 
-		if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-		{
-			Vector3 playerToMouse = floorHit.point - transform.position;
+		//Debug.Log(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask));
+		//if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
+		//{
+		//	Vector3 playerToMouse = floorHit.point - transform.position;
 
-			playerToMouse.y = 0f;
+		//	playerToMouse.y = 0f;
 
-			Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+		//	Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
 
-			playerRigidbody.MoveRotation(newRotation);
-		}
+		//	playerRigidbody.MoveRotation(newRotation);
+		//}
+
+		//Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+		//Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+		//float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+		//transform.rotation = Quaternion.Euler(new Vector3(0f, angle, 0f));
+
+		
 	}
 
-	void Animating(float h, float v)
+	float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
 	{
-		bool walking = h != 0f || v != 0f;
-		anim.SetBool("IsWalking", walking);
+		return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+	}
+
+	void Animating()
+	{
+		if (moveType == MoveType.run)
+			anim.SetInteger("MovementInt", 2);
+		else if (moveType == MoveType.walk)
+			anim.SetInteger("MovementInt", 1);
+		else
+			anim.SetInteger("MovementInt", 0);
 	}
 }
