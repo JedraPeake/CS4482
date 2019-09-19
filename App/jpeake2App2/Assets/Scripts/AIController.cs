@@ -33,6 +33,8 @@ public class AIController : MonoBehaviour
 
 	void Move()
 	{
+		// random sprint activated!!
+
 		if (Vector3.Distance(transform.position, player.position) >= MinDist)
 		{
 			transform.position += transform.forward * speed * Time.deltaTime;
