@@ -9,12 +9,13 @@ public class PlayerController : MonoBehaviour
 	Animator anim;
 	int floorMask;
 	Rigidbody playerRigidbody;
-
-	public float speed = 6f;
 	Vector3 movement;
-
 	float camRayLength = 100f;
 	MoveType moveType = MoveType.idle;
+
+	public float speed = 6f;
+	public bool playerit;
+	public GameObject playerSphere;
 
 	void Awake()
 	{
@@ -35,6 +36,9 @@ public class PlayerController : MonoBehaviour
 		Move(h, v);
 
 		Animating();
+
+		// fix this
+		HideSphere();
 	}
 
 	MoveType GetMoveType(float h, float v)
@@ -59,21 +63,6 @@ public class PlayerController : MonoBehaviour
 
 	void Turning()
 	{
-		//Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-		//RaycastHit floorHit;
-
-		//// Debug.Log(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask));
-		//if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-		//{
-		//	Vector3 playerToMouse = floorHit.point - transform.position;
-
-		//	playerToMouse.y = 0f;
-
-		//	Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-
-		//	playerRigidbody.MoveRotation(newRotation);
-		//}
-
 		Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
 		Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
 		float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
@@ -93,5 +82,27 @@ public class PlayerController : MonoBehaviour
 			anim.SetInteger("MovementInt", 1);
 		else
 			anim.SetInteger("MovementInt", 0);
+	}
+
+	void HideSphere()
+	{
+		if (!playerit)
+		{
+			playerSphere.GetComponent<Renderer>().enabled = false;
+		}
+		else
+		{
+			playerSphere.GetComponent<Renderer>().enabled = true;
+		}
+	}
+
+	public void MakeIt()
+	{
+		playerit = true;
+	}
+
+	public void MakeNotIt()
+	{
+		playerit = false;
 	}
 }
