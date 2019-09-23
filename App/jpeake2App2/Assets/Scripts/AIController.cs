@@ -6,8 +6,8 @@ public class AIController : MonoBehaviour
 	Rigidbody aiRigidbody;
 	Vector3 movement;
 
-	int maxDist = 100;
-	int minDist = 4;
+	int maxDist = 1000;
+	int minDist = 0;
 
 	public float speed = 6f;
 	public bool aIIt;
@@ -31,9 +31,9 @@ public class AIController : MonoBehaviour
 	void Update()
 	{
 		Turn();
+
 		Move();
 
-		// fix this
 		HideSphere();
 	}
 
@@ -65,28 +65,11 @@ public class AIController : MonoBehaviour
 
 	void Move()
 	{
-		if (!aIIt)
-		{
-			var calcPos = transform.forward * speed * Time.deltaTime;
-			var t = Random.Range(0.0f, 15.0f);
-			if (t > 10)
-				calcPos *= 2;
+		var calcPos = transform.forward * speed * Time.deltaTime;
+		if (Random.Range(0.0f, 15.0f) > 10)
+			calcPos *= 2;
 
-			transform.position += calcPos;
-		}
-		else
-		{
-			if (Vector3.Distance(transform.position, player.position) >= minDist)
-			{
-				transform.position += transform.forward * speed * Time.deltaTime;
-
-				if (Vector3.Distance(transform.position, player.position) <= maxDist)
-				{
-					AIShootingScript.Shoot();
-				}
-
-			}
-		}
+		transform.position += calcPos;
 	}
 
 	public void MakeIt()

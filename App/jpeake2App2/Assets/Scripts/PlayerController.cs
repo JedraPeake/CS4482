@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
 		Animating();
 
-		// fix this
 		HideSphere();
 	}
 
@@ -55,7 +54,6 @@ public class PlayerController : MonoBehaviour
 		if (moveType == MoveType.run)
 			movement *= 2;
 
-		Debug.Log(movement);
 		playerRigidbody.MovePosition(transform.position + movement);
 	}
 

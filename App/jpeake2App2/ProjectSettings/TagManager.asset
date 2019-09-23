@@ -6,6 +6,11 @@ TagManager:
   tags:
   - AITag
   - AIShoot
+  - Score1
+  - Score2
+  - Score3
+  - Leaderboard
+  - StaticObj
   layers:
   - Default
   - TransparentFX

@@ -4,21 +4,42 @@ using UnityEngine;
 
 public class LeaderBoard : MonoBehaviour
 {
+	public static LeaderBoard Instance;
 	List<Entry> entries = new List<Entry>();
+
+	void Awake()
+	{
+		if (Instance == null)
+		{
+			DontDestroyOnLoad(gameObject);
+			Instance = this;
+		}
+		else if (Instance != this)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+	void Start()
+	{
+		entries.AddRange(new List<Entry> { new Entry("Unregistered Player", 0), new Entry("Unregistered Player", 0), new Entry("Unregistered Player", 0) });
+	}
 
 	public void UpdateLb(string name, int score)
 	{
-		if (entries.Count < 5)
+		Debug.Log("up");
+		if (entries[2].score < score)
 		{
+			entries.RemoveAt(2);
 			entries.Add(new Entry(name, score));
-			entries = entries.OrderBy(x => x.score).ToList();
+			entries = entries.OrderByDescending(x => x.score).ToList();
 		}
-		else if (entries[4].score < score)
-		{
-			entries.RemoveAt(4);
-			entries.Add(new Entry(name, score));
-			entries = entries.OrderBy(x => x.score).ToList();
-		}
+	}
+
+	public List<Entry> GetLB()
+	{
+		
+		return entries;
 	}
 }
 

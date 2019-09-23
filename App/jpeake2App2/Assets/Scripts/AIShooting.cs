@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AIShooting : MonoBehaviour
 {
-	public float timeBetweenBullets = 0.15f;
+	public float timeBetweenBullets = 1.5f;
 	public float range = 1f;
 
 	readonly float effectsDisplayTime = 0.2f;
@@ -34,6 +32,13 @@ public class AIShooting : MonoBehaviour
 	{
 		if (AIControllerScript.aIIt)
 		{
+			timer += Time.deltaTime;
+
+			if (Random.Range(0.0f, 15.0f) > 14 && timer >= timeBetweenBullets)
+			{
+				Shoot();
+			}
+
 			if (timer >= timeBetweenBullets * effectsDisplayTime)
 			{
 				DisableEffects();

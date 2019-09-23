@@ -3,14 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-	float timer = 5 * 60f;
+	static float timer = 10f;
 	int playerScore = 0;
-	PlayerController PlayerControllerScript;
+	PlayerController PlayerControllerScript = null;
+	LeaderBoard leaderBoard = null;
 
 	void Awake()
 	{
 		GameObject g2 = GameObject.FindGameObjectWithTag("Player");
-		PlayerControllerScript = g2.GetComponent<PlayerController>();
+		if (g2 != null)
+			PlayerControllerScript = g2.GetComponent<PlayerController>();
+
+		GameObject g = GameObject.FindGameObjectWithTag("StaticObj");
+		if (g != null)
+			leaderBoard = g.GetComponent<LeaderBoard>();
 	}
 
 	void Start()
@@ -20,15 +26,36 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-		timer -= Time.deltaTime;
-
-		if (!PlayerControllerScript.playerit)
-			playerScore++;
-
-		if (timer <= 0)
+		if (SceneManager.GetActiveScene().buildIndex == 0)
 		{
-			timer = 0;
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+			timer = 10f;
+		}
+		else
+		{
+			if (PlayerControllerScript == null)
+			{
+				GameObject g2 = GameObject.FindGameObjectWithTag("Player");
+				if (g2 != null)
+					PlayerControllerScript = g2.GetComponent<PlayerController>();
+			}
+
+			timer -= Time.deltaTime;
+
+			if (!PlayerControllerScript.playerit)
+				playerScore++;
+
+			if (timer <= 0)
+			{
+				if (leaderBoard == null)
+				{
+					GameObject g = GameObject.FindGameObjectWithTag("StaticObj");
+					leaderBoard = g.GetComponent<LeaderBoard>();
+				}
+
+				timer = 0;
+				leaderBoard.UpdateLb("New Player", playerScore);
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+			}
 		}
 	}
 }
