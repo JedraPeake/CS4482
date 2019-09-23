@@ -52,7 +52,6 @@ public class Entry
 	{
 		name = n;
 		score = s;
-
 	}
 }
 

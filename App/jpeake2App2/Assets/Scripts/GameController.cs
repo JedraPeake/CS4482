@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-	static float timer = 10f;
+	float defTimer = 5 * 60f;
+	static float timer; 
 	int playerScore = 0;
 	PlayerController PlayerControllerScript = null;
 	LeaderBoard leaderBoard = null;
@@ -21,14 +22,14 @@ public class GameController : MonoBehaviour
 
 	void Start()
     {
-        
+		timer = defTimer;
     }
 
     void Update()
     {
 		if (SceneManager.GetActiveScene().buildIndex == 0)
 		{
-			timer = 10f;
+			timer = defTimer;
 		}
 		else
 		{

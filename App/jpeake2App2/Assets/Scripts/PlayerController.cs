@@ -5,10 +5,8 @@ public enum MoveType { idle, walk, run };
 public class PlayerController : MonoBehaviour
 {
 	Animator anim;
-	int floorMask;
 	Rigidbody playerRigidbody;
 	Vector3 movement;
-	float camRayLength = 100f;
 	MoveType moveType = MoveType.idle;
 
 	public float speed = 6f;
@@ -17,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		floorMask = LayerMask.GetMask("Ground");
 		anim = GetComponent<Animator>();
 		playerRigidbody = GetComponent<Rigidbody>();
 	}

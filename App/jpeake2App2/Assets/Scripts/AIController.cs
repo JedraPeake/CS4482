@@ -2,30 +2,15 @@
 
 public class AIController : MonoBehaviour
 {
-	Transform player;
-	Rigidbody aiRigidbody;
-	Vector3 movement;
-
-	int maxDist = 1000;
-	int minDist = 0;
+	public Transform player;
 
 	public float speed = 6f;
 	public bool aIIt;
 	public GameObject AISphere;
 
-	AIShooting AIShootingScript;
-
-	void Awake()
-	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
-		aiRigidbody = GetComponent<Rigidbody>();
-
-		GameObject g = GameObject.FindGameObjectWithTag("AIShoot");
-		AIShootingScript = g.GetComponent<AIShooting>();
-	}
-
 	void Start()
 	{
+
 	}
 
 	void Update()
