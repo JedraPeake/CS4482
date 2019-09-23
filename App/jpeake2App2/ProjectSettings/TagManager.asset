@@ -11,6 +11,11 @@ TagManager:
   - Score3
   - Leaderboard
   - StaticObj
+  - PlayerObj
+  - Twall
+  - Bwall
+  - Lwall
+  - Rwall
   layers:
   - Default
   - TransparentFX
