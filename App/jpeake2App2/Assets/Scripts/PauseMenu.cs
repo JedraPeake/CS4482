@@ -1,14 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class PauseMenu : MonoBehaviour
 {
 	public static bool GameIsPasued = false;
 	public GameObject PauseMenuUi;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

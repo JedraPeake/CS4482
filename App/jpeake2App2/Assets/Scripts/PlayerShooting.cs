@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-	float effectsDisplayTime = 0.2f;
 	public float timeBetweenBullets = 0.15f;
 	public float range = 1f;
+
+	readonly float effectsDisplayTime = 0.2f;
+	float timer;
 
 	Ray shootRay;
 	RaycastHit shootHit;
 	LineRenderer gunLine;
-
-	float timer;
 	int shootableMask;
 
 	AIController AIControllerScript;
@@ -30,28 +28,21 @@ public class PlayerShooting : MonoBehaviour
 		PlayerControllerScript = g2.GetComponent<PlayerController>();
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
     void Update()
     {
-		timer += Time.deltaTime;
-
-		// If the Fire1 button is being press and it's time to fire...
-		if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
+		if (PlayerControllerScript.playerit)
 		{
-			// ... shoot the gun.
-			Shoot();
-		}
+			timer += Time.deltaTime;
 
-		// If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-		if (timer >= timeBetweenBullets * effectsDisplayTime)
-		{
-			// ... disable the effects.
-			DisableEffects();
+			if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
+			{
+				Shoot();
+			}
+
+			if (timer >= timeBetweenBullets * effectsDisplayTime)
+			{
+				DisableEffects();
+			}
 		}
 	}
 
@@ -71,17 +62,14 @@ public class PlayerShooting : MonoBehaviour
 
 		if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
 		{
-
-			Debug.Log("if");
 			AIControllerScript.MakeIt();
 			PlayerControllerScript.MakeNotIt();
-
-			// Set the second position of the line renderer to the point the raycast hit.
 			gunLine.SetPosition(1, shootHit.point);
+
+			DisableEffects();
 		}
 		else
 		{
-			Debug.Log("else");
 			gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
 		}
 	}

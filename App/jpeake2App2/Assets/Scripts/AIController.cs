@@ -7,16 +7,21 @@ public class AIController : MonoBehaviour
 	Vector3 movement;
 
 	int maxDist = 100;
-	int minDist = 5;
+	int minDist = 4;
 
 	public float speed = 6f;
 	public bool aIIt;
 	public GameObject AISphere;
 
+	AIShooting AIShootingScript;
+
 	void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		aiRigidbody = GetComponent<Rigidbody>();
+
+		GameObject g = GameObject.FindGameObjectWithTag("AIShoot");
+		AIShootingScript = g.GetComponent<AIShooting>();
 	}
 
 	void Start()
@@ -30,7 +35,6 @@ public class AIController : MonoBehaviour
 
 		// fix this
 		HideSphere();
-
 	}
 
 	void Turn()
@@ -78,7 +82,7 @@ public class AIController : MonoBehaviour
 
 				if (Vector3.Distance(transform.position, player.position) <= maxDist)
 				{
-					//Here Call any function U want Like Shoot at here or something
+					AIShootingScript.Shoot();
 				}
 
 			}
