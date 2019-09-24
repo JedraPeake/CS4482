@@ -16,6 +16,7 @@ TagManager:
   - Bwall
   - Lwall
   - Rwall
+  - PlayerName
   layers:
   - Default
   - TransparentFX

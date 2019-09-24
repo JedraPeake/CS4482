@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
 				}
 
 				timer = 0;
-				leaderBoard.UpdateLb("New Player", playerScore);
+				leaderBoard.UpdateLb(playerScore);
 				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 			}
 		}

@@ -2,7 +2,7 @@
 
 public class AIShooting : MonoBehaviour
 {
-	public float timeBetweenBullets = 1.5f;
+	public float timeBetweenBullets = 4.0f;
 	public float range = 1f;
 
 	readonly float effectsDisplayTime = 0.2f;
