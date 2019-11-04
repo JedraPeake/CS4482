@@ -17,6 +17,8 @@ TagManager:
   - Lwall
   - Rwall
   - PlayerName
+  - PlayerTime
+  - PlayerScore
   layers:
   - Default
   - TransparentFX
