@@ -8,7 +8,7 @@ App
 
 Tools
 * [TOOLS 1 – Learn the Unity Editor API](https://github.com/JedraPeake/CS4482#tools-1--learn-the-unity-editor-api)
-* [TOOLS 2 – Language and Localization](https://github.com/JedraPeake/CS4482#tools-1--language-and-localization)
+* [TOOLS 2 – Language and Localization](https://github.com/JedraPeake/CS4482#tools-2--language-and-localization)
 * [TOOLS 3 – Dialog Editor](https://github.com/JedraPeake/CS4482#tools-3--dialog-editor)
 
 Optional
